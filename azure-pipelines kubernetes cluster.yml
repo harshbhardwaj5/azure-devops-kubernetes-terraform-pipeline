@@ -16,12 +16,8 @@ steps:
 - task: TerraformTaskV3@3
   inputs:
     provider: 'azurerm'
-    command: 'init'
+    command: 'apply'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceNameAzureRM: 'DevOps_pod'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilepath)'
-    backendServiceArm: 'DevOps_pod'
-    backendAzureRmResourceGroupName: 'HB-RG'
-    backendAzureRmStorageAccountName: 'stgkubernetesharsh23'
-    backendAzureRmContainerName: 'newcontainer'
-    backendAzureRmKey: 'terraform.tfstate'
-
+    
